@@ -6,11 +6,17 @@ import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "../components/fields/color";
 import { iconSchema } from "../components/util/icon";
 
+console.log('vars', {
+  client: process.env.TINA_PUBLIC_CLIENT_ID,
+  branch: process.env.TINA_PUBLIC_BRANCH!,
+  token: process.env.TINA_TOKEN!
+})
+
 const config = defineConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID! || process.env.TINA_PUBLIC_CLIENT_ID!,
   branch:
     process.env.NEXT_PUBLIC_TINA_BRANCH! || // custom branch env override
-    process.env.PUBLIC_TINA_BRANCH! || // custom branch env override
+    process.env.TINA_PUBLIC_BRANCH! || // custom branch env override
     process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF! || // Vercel branch env
     process.env.HEAD!, // Netlify branch env
   token: process.env.TINA_TOKEN!,

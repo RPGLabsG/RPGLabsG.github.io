@@ -81,13 +81,13 @@ jobs:
         env:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          PUBLIC_TINA_BRANCH: ${{ steps.extract_branch.outputs.branch }}
-        run: echo "$TINA_PUBLIC_CLIENT_ID $TINA_TOKEN $PUBLIC_TINA_BRANCH"
+          TINA_PUBLIC_BRANCH: ${{ steps.extract_branch.outputs.branch }}
+        run: echo "'$TINA_PUBLIC_CLIENT_ID' '$TINA_TOKEN' $TINA_PUBLIC_BRANCH"
       - name: Build TinaCMS
         env:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          PUBLIC_TINA_BRANCH: ${{ steps.extract_branch.outputs.branch }}
+          TINA_PUBLIC_BRANCH: ${{ steps.extract_branch.outputs.branch }}
         run: ${{ steps.detect-package-manager.outputs.runner }} tinacms build
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
