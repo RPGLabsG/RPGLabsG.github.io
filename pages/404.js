@@ -7,8 +7,8 @@ export default function FourOhFour({ pageProps }) {
       <Hero
         data={{
           color: "default",
-          headline: "404 – Page Not Found" + {pageProps},
-          text: "Oops! It seems there's nothing here, how embarrassing." + {pageProps},
+          headline: "404 – Page Not Found" + JSON.stringify(pageProps),
+          text: "Oops! It seems there's nothing here, how embarrassing.",
           actions: [
             {
               label: "Return Home",
