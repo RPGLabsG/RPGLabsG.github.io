@@ -1,7 +1,5 @@
 import { Hero } from "../components/blocks/hero";
 import { Layout } from "../components/layout";
-import React from "react";
-import { useRouter } from 'next/router'
 
 export default function FourOhFour() {
   return (
