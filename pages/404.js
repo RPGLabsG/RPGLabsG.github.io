@@ -3,7 +3,7 @@ import Head from "next/head";
 import { Header } from "../components/layout/header";
 import { Footer } from "../components/layout/footer";
 import { Theme } from "../components/layout/theme";
-import layoutData from "../../content/global/index.json";
+import layoutData from "../content/global/index.json";
 const rawData = {};
 
 export default function FourOhFour() {
