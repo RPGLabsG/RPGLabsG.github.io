@@ -185,7 +185,7 @@ const config = defineConfig({
                     return { label: item?.label };
                   },
                   defaultItem: {
-                    href: "home",
+                    href: "posts",
                     label: "Home",
                   },
                 },
@@ -329,7 +329,7 @@ const config = defineConfig({
         path: "content/pages",
         ui: {
           router: ({ document }) => {
-            if (document._sys.filename === "home") {
+            if (document._sys.filename === "posts") {
               return `/`;
             }
             if (document._sys.filename === "about") {
