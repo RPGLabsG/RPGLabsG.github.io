@@ -10,6 +10,14 @@
     "nav": [
       {
         "href": "",
+        "label": "Home"
+      },
+      {
+        "href": "about",
+        "label": "About"
+      },
+      {
+        "href": "posts",
         "label": "Blog"
       }
     ]
@@ -23,7 +31,7 @@
     }
   },
   "theme": {
-    "color": "green",
+    "color": "teal",
     "font": "sans",
     "darkMode": "dark"
   }
