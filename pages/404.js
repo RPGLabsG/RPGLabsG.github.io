@@ -4,10 +4,10 @@ import React from "react";
 import { useRouter } from 'next/router'
 
 export default function FourOhFour() {
-  if (window.location.href === '/') {
+  if (this.props.location.pathname === '/') {
     const router = useRouter();
     React.useEffect(()=>{
-      router.push(window.location.href)
+      router.push(this.props.location.pathname)
     },[])
   }
   return (
