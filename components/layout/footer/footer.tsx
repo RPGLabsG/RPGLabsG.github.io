@@ -59,6 +59,7 @@ export const Footer = ({ data, icon, rawData }) => {
               />
             </a>
           </Link>
+          Test kingdom
           <div className="flex gap-4">
             {data.social && data.social.facebook && (
               <a
