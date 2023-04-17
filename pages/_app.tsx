@@ -3,10 +3,6 @@ import "../styles.css";
 import { useRouter } from 'next/router'
 
 const App = ({ Component, pageProps }) => {
-  console.log('input', {
-    Component,
-    pageProps
-  })
   const router = useRouter();
   React.useEffect(()=>{
     router.push(window.location.href)
