@@ -1,11 +1,11 @@
 {
   "header": {
     "icon": {
-      "name": "BiBody",
-      "color": "red",
+      "name": "BiCrown",
+      "color": "yellow",
       "style": "float"
     },
-    "name": "Tina Starter",
+    "name": "The Kingdom",
     "color": "primary",
     "nav": [
       {
