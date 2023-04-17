@@ -1,8 +1,8 @@
 import React from "react";
 import Head from "next/head";
-import { Header } from "./header";
-import { Footer } from "./footer";
-import { Theme } from "./theme";
+import { Header } from "../components/layout/header";
+import { Footer } from "../components/layout/footer";
+import { Theme } from "../components/layout/theme";
 import layoutData from "../../content/global/index.json";
 const rawData = {};
 
