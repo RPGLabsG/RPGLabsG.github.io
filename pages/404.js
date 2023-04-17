@@ -33,7 +33,7 @@ export default function FourOhFour() {
           </>
         )}
         <script type="text/javascript">
-          // If you're creating a Project Pages site and NOT using a custom domain,
+          {`// If you're creating a Project Pages site and NOT using a custom domain,
           // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
           // This way the code will only replace the route part of the path, and not
           // the real directory in which the app resides, for example:
@@ -49,7 +49,7 @@ export default function FourOhFour() {
             l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
             (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
             l.hash
-          );
+          );`}
         </script>
       </Head>
       <Theme data={layoutData?.theme}>
