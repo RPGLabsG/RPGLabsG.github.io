@@ -1,15 +1,23 @@
 {
   "header": {
     "icon": {
-      "name": "BiCrown",
-      "color": "yellow",
+      "name": "BiBody",
+      "color": "red",
       "style": "float"
     },
-    "name": "The Kingdom",
+    "name": "Tina Starter",
     "color": "primary",
     "nav": [
       {
         "href": "",
+        "label": "Home"
+      },
+      {
+        "href": "about",
+        "label": "About"
+      },
+      {
+        "href": "posts",
         "label": "Blog"
       }
     ]
@@ -25,6 +33,6 @@
   "theme": {
     "color": "green",
     "font": "sans",
-    "darkMode": "light"
+    "darkMode": "dark"
   }
 }
