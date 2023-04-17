@@ -4,12 +4,6 @@ import React from "react";
 import { useRouter } from 'next/router'
 
 export default function FourOhFour() {
-  if (this.props.location.pathname === '/') {
-    const router = useRouter();
-    React.useEffect(()=>{
-      router.push(this.props.location.pathname)
-    },[])
-  }
   return (
     <Layout>
       <Hero

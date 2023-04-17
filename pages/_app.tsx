@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter();
-  React.useEffect(()=>{
+  React.componentDidMount(()=>{
     router.push(window.location.href)
   },[])
   return <Component {...pageProps} />;
