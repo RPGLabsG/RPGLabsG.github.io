@@ -1,7 +1,15 @@
 import { Hero } from "../components/blocks/hero";
 import { Layout } from "../components/layout";
+import React from "react";
+import { useRouter } from 'next/router'
 
 export default function FourOhFour() {
+  if (window.location.href === '/') {
+    const router = useRouter();
+    React.useEffect(()=>{
+      router.push(window.location.href)
+    },[])
+  }
   return (
     <Layout>
       <Hero
