@@ -6,7 +6,7 @@
       "style": "float"
     },
     "name": "The Kingdom",
-    "color": "primary",
+    "color": "default",
     "nav": [
       {
         "href": "",
@@ -24,7 +24,7 @@
   },
   "theme": {
     "color": "green",
-    "font": "sans",
+    "font": "nunito",
     "darkMode": "dark"
   }
 }
