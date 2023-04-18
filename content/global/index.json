@@ -23,7 +23,7 @@
     }
   },
   "theme": {
-    "color": "green",
+    "color": "purple",
     "font": "nunito",
     "darkMode": "dark"
   }
