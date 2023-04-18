@@ -66,24 +66,25 @@ export const Header = ({ data }) => {
 
   return (
     <div
-      className={`relative overflow-hidden bg-gradient-to-b ${headerColorCss}`}
+      className={`relative overflow-hidden bg-gradient-to-b  bg-white `} // ${headerColorCss}
     >
       <Container size="custom" className="py-0 relative z-10 max-w-8xl">
         <div className="flex items-center justify-between gap-6">
           <h4 className="select-none text-lg font-bold tracking-tight my-4 transition duration-150 ease-out transform">
             <Link href="/" passHref>
               <a className="flex gap-1 items-center whitespace-nowrap tracking-[.002em]">
-                <Icon
+                <img src="https://the-kingdom.world/_nuxt/logo_2x.b97e82d7.webp"  className="h-14" />
+                {/* <Icon
                   parentColor={data.color}
                   data={{
                     name: data.icon.name,
                     color: data.icon.color,
                     style: data.icon.style,
                   }}
-                />
-                {data.name}
+                /> 
+                {data.name} */}	
               </a>
-            </Link>
+            </Link> 
           </h4>
           <ul className="flex gap-6 sm:gap-8 lg:gap-10 tracking-[.002em] -mx-4">
             {data.nav &&
