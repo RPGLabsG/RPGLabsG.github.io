@@ -150,6 +150,12 @@ const config = defineConfig({
                     name: 'embedSrc',
                     label: 'Embed URL',
                   },
+                  {
+                    name: 'width',
+                    type: 'number',
+                    label: 'Width',
+                    description: 'The width of the video (in px) ',
+                  },
                 ],
               },
               {

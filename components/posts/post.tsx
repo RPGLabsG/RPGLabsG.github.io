@@ -36,6 +36,7 @@ const components: Components<{
   };
   Youtube: {
     embedSrc: string;
+    width: number;
   };
   Iframe: {
     iframeSrc: string;
@@ -118,9 +119,10 @@ const components: Components<{
   Iframe: ({ iframeSrc, height }) => {
     return <iframe width="100%" height={`${height}px`} src={iframeSrc} />
   },
-  Youtube: ({ embedSrc }) => (
+  Youtube: ({ embedSrc, width }) => (
     <iframe
-      width="560"
+      style={{margin: 'auto'}}
+      width={width ? `${width}px` : `100%`}
       height="315"
       src={embedSrc}
       title="YouTube video player"
