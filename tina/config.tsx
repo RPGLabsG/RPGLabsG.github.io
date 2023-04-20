@@ -141,6 +141,30 @@ const config = defineConfig({
                   },
                 },
               },
+              {
+                name: 'Youtube',
+                label: 'Youtube Embed',
+                fields: [
+                  {
+                    type: 'string',
+                    name: 'embedSrc',
+                    label: 'Embed URL',
+                  },
+                ],
+              },
+              {
+                name: 'Iframe',
+                label: 'Embeded an Iframe',
+                fields: [
+                  { name: 'iframeSrc', type: 'string' },
+                  {
+                    name: 'height',
+                    type: 'number',
+                    label: 'Height',
+                    description: 'The hight of the iframe (in px) ',
+                  },
+                ],
+              },
             ],
             isBody: true,
           },
