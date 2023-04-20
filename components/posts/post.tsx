@@ -123,7 +123,6 @@ const components: Components<{
     <iframe
       style={{margin: 'auto'}}
       width={width ? `${width}px` : `100%`}
-      height="315"
       src={embedSrc}
       title="YouTube video player"
       frameBorder="0"
