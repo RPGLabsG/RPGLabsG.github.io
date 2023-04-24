@@ -24,7 +24,11 @@ const config = defineConfig({
     tina: {
       publicFolder: "public",
       mediaRoot: "uploads",
-    },
+    } as any as never,
+    loadCustomStore: async (): Promise<any> => {
+      const pack = await import('next-tinacms-s3')
+      return pack.TinaCloudS3MediaStore
+    }
   },
   build: {
     publicFolder: "public", // The public asset folder for your framework

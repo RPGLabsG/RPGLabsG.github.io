@@ -83,6 +83,10 @@ jobs:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           TINA_PUBLIC_BRANCH: ${{ steps.extract_branch.outputs.branch }}
+          NEXT_PUBLIC_S3_REGION: ${{ secrets.NEXT_PUBLIC_S3_REGION }}
+          NEXT_PUBLIC_S3_BUCKET: ${{ secrets.NEXT_PUBLIC_S3_BUCKET }}
+          NEXT_PUBLIC_S3_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_S3_ACCESS_KEY }}
+          S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
         run: ${{ steps.detect-package-manager.outputs.runner }} tinacms build
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
