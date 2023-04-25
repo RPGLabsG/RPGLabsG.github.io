@@ -16,7 +16,7 @@ export default createMediaHandler({
       secretAccessKey: process.env.S3_SECRET_KEY || '',
     },
     region: process.env.NEXT_PUBLIC_S3_REGION,
-  }, 
+  },
   bucket: process.env.NEXT_PUBLIC_S3_BUCKET || '',
   authorized: async (req, _res) => {
     if (process.env.NODE_ENV === 'development') {
