@@ -5,6 +5,8 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "../components/fields/color";
 import { iconSchema } from "../components/util/icon";
+import { MyCustomMediaStore } from "../customMediaStore";
+
 
 const config = defineConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID! || process.env.TINA_PUBLIC_CLIENT_ID!,
@@ -21,10 +23,16 @@ const config = defineConfig({
     //   return pack.TinaCloudCloudinaryMediaStore;
     // },
     // this is the config for the tina cloud media store
-    tina: {
+   
+   // @ts-ignore
+   loadCustomStore: async () => {
+    return MyCustomMediaStore;
+  },
+   
+   /* tina: {
       publicFolder: "public",
       mediaRoot: "uploads",
-    },
+    }, */
     // loadCustomStore: async (): Promise<any> => {
     //   const pack = await import('next-tinacms-s3')
     //   return pack.TinaCloudS3MediaStore
