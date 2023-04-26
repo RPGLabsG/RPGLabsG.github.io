@@ -18,6 +18,10 @@ module.exports = {
         source: "/admin",
         destination: "/admin/index.html",
       },
+      {
+        source: "/admin/uploads",
+        destination: "/uploads",
+      },
     ];
   },
 };

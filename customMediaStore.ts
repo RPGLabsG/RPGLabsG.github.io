@@ -1,9 +1,9 @@
-import {  Media, MediaListOptions, MediaList, MediaStore, MediaUploadOptions } from "tinacms";
+import { Media, MediaListOptions, MediaList, MediaStore, MediaUploadOptions } from "tinacms";
 
 export class MyCustomMediaStore implements MediaStore {
   accept = '*'
 
-  private baseUrl = 'https://github.com/RPGLabsG/rpglabsg.github.io/tree/master/public/uploads'
+  private baseUrl = 'https://api.github.com/repos/RPGLabsG/rpglabsg.github.io/contents/public/uploads'
 
   constructor() {
     //
@@ -35,11 +35,23 @@ export class MyCustomMediaStore implements MediaStore {
     const directory = options?.directory ?? ''
     const offset = (options?.offset as number) ?? 0
     const limit = options?.limit ?? 50
-    const { file } = await this.getFile(directory)
+    const files = await this.getFilesInDir(directory)
+    const items = files.map((file: any) => {
+      return {
+        id: file.name,
+        type: 'file',
+        directory,
+        filename: file.name,
+        src : 'https://media.githubusercontent.com/media/RPGLabsG/rpglabsg.github.io/master/public/uploads/' + file.name,
+        thumbnails: {
+          ['small']: 'https://media.githubusercontent.com/media/RPGLabsG/rpglabsg.github.io/master/public/uploads/' + file.name,
+        },
+        
+          } as Media});
 
     return {
-      items: file.content.slice(offset, offset + limit),
-      nextOffset: nextOffset(offset, limit, file.content.length),
+      items,
+      nextOffset: nextOffset(offset, limit, items.length),
     } as unknown as MediaList
   }
   async delete(media: Media): Promise<void> {
@@ -70,10 +82,22 @@ export class MyCustomMediaStore implements MediaStore {
       return response.json()
     })
   }
+
+  async getFilesInDir(fileRelativePath: string) {
+    const response = await fetch(`${this.baseUrl}/${encodeURIComponent(fileRelativePath)}`, {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    });
+    return await response.json();
+  }
+
+
   deleteFromDisk(data: { relPath: string }): Promise<any> {
     return fetch(`${this.baseUrl}/${encodeURIComponent(data.relPath)}`, {
       method: 'DELETE',
-      mode: 'no-cors',
+      mode: 'cors',
+      credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
