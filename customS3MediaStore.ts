@@ -132,7 +132,7 @@ export class CustomS3MediaStore implements MediaStore {
   async list(options: MediaListOptions): Promise<MediaList> {
     const directory = options?.directory ?? ''
     let offset = options?.offset
-    const limit = options?.limit ?? 500
+    const limit = options?.limit ?? 50
 
     const client = new S3Client({
       region: this.region,

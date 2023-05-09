@@ -216,6 +216,31 @@ export const Post = (props) => {
             data-tinafield="heroImg"
             className="relative max-w-4xl lg:max-w-5xl mx-auto"
           >
+            {(props.heroImg.endsWith('mp4') || props.heroImg.endsWith('avi')) &&
+              (
+                <div>
+                  <video
+                    src={props.heroImg}
+                    width="100%" height="100%"
+                    className="absolute block rounded-lg w-full h-auto blur-2xl brightness-150 contrast-[0.9] dark:brightness-150 saturate-200 opacity-50 dark:opacity-30 mix-blend-multiply dark:mix-blend-hard-light"
+                    aria-hidden="true"
+                    controls
+                  >
+                    <source src={props.heroImg} />
+                    Your browser does not support the video tag.
+                  </video>
+                  <video
+                    src={props.heroImg}
+                    width="100%" height="100%"
+                    className="relative z-10 mb-14 block rounded-lg w-full h-auto opacity-100"
+                    controls
+                  > 
+                    <source src={props.heroImg} />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )
+            }
             <img
               src={props.heroImg}
               className="absolute block rounded-lg w-full h-auto blur-2xl brightness-150 contrast-[0.9] dark:brightness-150 saturate-200 opacity-50 dark:opacity-30 mix-blend-multiply dark:mix-blend-hard-light"
