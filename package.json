@@ -32,6 +32,7 @@
     "postcss-nesting": "^10.1.0"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.329.0",
     "@headlessui/react": "1.7.5",
     "@tailwindcss/typography": "^0.5.8",
     "@tinacms/auth": "^1.0.3",
