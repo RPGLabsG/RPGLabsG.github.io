@@ -112,11 +112,21 @@ const components: Components<{
       </div>
     );
   },
-  img: (props) => (
-    <div className="flex items-center justify-center">
+  img: (props) => {
+    const ext = props.url.split('.').pop();
+    if (['mp4', 'avi'].includes(ext)) {
+      return <div className="flex items-center justify-center">
+        <video width="100%" height="100%" controls>
+          <source src={props.url} />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    }
+    return <div className="flex items-center justify-center">
       <img src={props.url} alt={props.alt} />
     </div>
-  ),
+
+  },
   Iframe: ({ iframeSrc, height }) => {
     return <iframe width="100%" height={`${height}px`} src={iframeSrc} />
   },

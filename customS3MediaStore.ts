@@ -5,20 +5,25 @@ import type {
   MediaStore,
   MediaUploadOptions,
 } from '@tinacms/toolkit'
-import { S3Client, ListObjectsCommand } from "@aws-sdk/client-s3";
+import { S3Client, ListObjectsCommand, DeleteObjectCommandInput, DeleteObjectCommand, PutObjectCommandInput, PutObjectCommand } from "@aws-sdk/client-s3";
 
 
 export class CustomS3MediaStore implements MediaStore {
-  fetchFunction = (input: RequestInfo, init?: RequestInit) => {
-    return fetch(input, init)
-  }
   accept = '*'
-  private baseUrl = 'https://kingdom-tinacms-store.s3.us-east-1.amazonaws.com'
+  private bucket = 'kingdom-tinacms-store';
+  private baseUrl = `https://${this.bucket}.s3.us-east-1.amazonaws.com`
   private region = 'us-east-1'
+  // private lastKey = undefined;
 
   // TODO:
   async persist(media: MediaUploadOptions[]): Promise<Media[]> {
+    // this.lastKey = undefined;
     const newFiles: Media[] = []
+
+    const client = new S3Client({
+      region: this.region,
+      signer: { sign: async (request) => request } // authentication workaround
+    });
 
     for (const item of media) {
       const { file, directory } = item
@@ -27,58 +32,107 @@ export class CustomS3MediaStore implements MediaStore {
       formData.append('directory', directory)
       formData.append('filename', file.name)
 
-      const res = await this.fetchFunction(`${this.baseUrl}`, {
-        method: 'POST',
-        body: formData,
-      })
 
-      if (res.status != 200) {
-        const responseData = await res.json()
-        throw new Error(responseData.message)
+      let prefix = directory.replace(/^\//, '').replace(/\/$/, '')
+      if (prefix) prefix = prefix + '/'
+
+      const blob = file
+      const filename = file.name
+      const params: PutObjectCommandInput = {
+        Bucket: this.bucket,
+        Key: prefix + filename,
+        Body: blob,
+        ACL: 'public-read',
       }
-      const fileRes = await res.json()
-      /**
-       * Images uploaded to S3 aren't instantly available via the API;
-       * waiting a couple seconds here seems to ensure they show up in the next fetch.
-       */
-      await new Promise((resolve) => {
-        setTimeout(resolve, 2000)
-      })
-      /**
-       * Format the response from S3 to match Media interface
-       * Valid S3 `resource_type` values: `image`, `video`, `raw` and `auto`
-       * uploading a directory is not supported as such, type is defaulted to `file`
-       */
+      const command = new PutObjectCommand(params)
+      try {
+        const fileRes = await client.send(command)
+        const src = this.baseUrl + prefix + filename
+        /**
+         * Images uploaded to S3 aren't instantly available via the API;
+         * waiting a couple seconds here seems to ensure they show up in the next fetch.
+         */
+        await new Promise((resolve) => {
+          setTimeout(resolve, 2000)
+        })
+        /**
+         * Format the response from S3 to match Media interface
+         * Valid S3 `resource_type` values: `image`, `video`, `raw` and `auto`
+         * uploading a directory is not supported as such, type is defaulted to `file`
+         */
+  
+        newFiles.push({
+          id: prefix + filename,
+          type: 'file',
+          directory,
+          filename,
+          src : src,
+          thumbnails: {
+            ['small']: src,
+            ['75x75']: src,
+            ['400x400']: src,
+            ['1000x1000']: src,
+          }
+        })
+      } catch (e) {
+        console.error('error uploading file', e);
+      }
 
-      newFiles.push(fileRes)
+
+      // const res = await this.fetchFunction(`${this.baseUrl}`, {
+      //   method: 'POST',
+      //   body: formData,
+      // })
+
+      // if (res.status != 200) {
+      //   const responseData = await res.json()
+      //   throw new Error(responseData.message)
+      // }
+      // const fileRes = await res.json()
+      // /**
+      //  * Images uploaded to S3 aren't instantly available via the API;
+      //  * waiting a couple seconds here seems to ensure they show up in the next fetch.
+      //  */
+      // await new Promise((resolve) => {
+      //   setTimeout(resolve, 2000)
+      // })
+      // /**
+      //  * Format the response from S3 to match Media interface
+      //  * Valid S3 `resource_type` values: `image`, `video`, `raw` and `auto`
+      //  * uploading a directory is not supported as such, type is defaulted to `file`
+      //  */
+
+      // newFiles.push(fileRes)
     }
     return newFiles
   }
-  // TODO:
   async delete(media: Media) {
-    await this.fetchFunction(`${this.baseUrl}/${encodeURIComponent(media.id)}`, {
-      method: 'DELETE',
-    })
+    throw new Error('Not implemented')
+
+    
+
+    // const client = new S3Client({
+    //   region: this.region,
+    //   signer: { sign: async (request) => request } // authentication workaround
+    // });
+
+    // const params: DeleteObjectCommandInput = {
+    //   Bucket: this.bucket,
+    //   Key: media.id,
+    // }
+    // const command = new DeleteObjectCommand(params)
+    // try {
+    //   const data = await client.send(command)
+    // } catch (e) {
+    //   console.error(e)
+    //   throw e
+    // }
   }
   // WIP:
   async list(options: MediaListOptions): Promise<MediaList> {
-    // const s3Options = {
-    //   'list-type': 2,
-    //   prefix: options.directory || '',
-    //   'start-after': options.offset,
-    //   'max-keys': options.limit,
-    // }
-    // const query = this.buildQuery(s3Options)
-    // const response = await this.fetchFunction(this.baseUrl + query)
-    // console.log('S3 response!', response);
-    // const textRes = await response.text();
-    // console.log('parsed string', textRes);
-    // const xmlDoc = new DOMParser().parseFromString(textRes, "text/xml")
-    // console.log('xml doc', xmlDoc);
-    
     const directory = options?.directory ?? ''
-    const offset = (options?.offset as number) ?? 0
-    const limit = options?.limit ?? 50
+    let offset = options?.offset
+    const limit = options?.limit ?? 500
 
     const client = new S3Client({
       region: this.region,
@@ -89,25 +143,36 @@ export class CustomS3MediaStore implements MediaStore {
       Prefix: directory || undefined,
       // StartAfter: options.offset,
       MaxKeys: limit,
-      // Marker
+      // Marker: this.lastKey
       
     })
 
     try {
       const data = await client.send(command);
-      const items = data.Contents?.map((file) => {
+      const items = (data.Contents || []).map((file) => {
+        
+        const filename = this.getBaseName(file.Key)
+        const directory = this.getDirname(file.Key) + '/'
+        
+        const src = this.baseUrl + '/' + file.Key
+
         return {
           id: file.Key,
           type: this.getFileType(file.Key),
           directory,
-          filename: file.Key,
-          src : `https://kingdom-tinacms-store.s3.us-east-1.amazonaws.com${directory ? '/' + directory : ''}/${file.Key}`,
+          filename,
+          src : src,
           thumbnails: {
-            ['small']: `https://kingdom-tinacms-store.s3.us-east-1.amazonaws.com${directory ? '/' + directory : ''}/${file.Key}`,
-            ['75x75']: `https://kingdom-tinacms-store.s3.us-east-1.amazonaws.com${directory ? '/' + directory : ''}/${file.Key}`,
-            ['400x400']: `https://kingdom-tinacms-store.s3.us-east-1.amazonaws.com${directory ? '/' + directory : ''}/${file.Key}`,
+            ['small']: src,
+            ['75x75']: src,
+            ['400x400']: src,
+            ['1000x1000']: src,
           },
       } as Media});
+
+      if (items?.length) {
+        offset = items[items.length - 1].id
+      }
       return {
         items,
         nextOffset: offset,
@@ -123,6 +188,23 @@ export class CustomS3MediaStore implements MediaStore {
     return img.src
   }
 
+  getBaseName(file) {
+    if (!file) {
+      return file
+    }
+    return file.split('/').reverse()[0];
+  }
+
+  getDirname(file) {
+    if (!file) {
+      return file
+    }
+    const parts = file.split('/');
+    parts.pop();
+    return parts.join('/');
+  }
+
+  
   getFileType(key: string) {
     if (key.endsWith('.jpg') || key.endsWith('.jpeg') || key.endsWith('.png') || key.endsWith('.gif')) {
       return 'image'
