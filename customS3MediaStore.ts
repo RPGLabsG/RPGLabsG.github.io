@@ -206,9 +206,9 @@ export class CustomS3MediaStore implements MediaStore {
 
   
   getFileType(key: string) {
-    if (key.endsWith('.jpg') || key.endsWith('.jpeg') || key.endsWith('.png') || key.endsWith('.gif')) {
+    if (key.endsWith('.jpg') || key.endsWith('.jpeg') || key.endsWith('.png') || key.endsWith('.gif') || key.endsWith('.webp')) {
       return 'image'
-    } else if (key.endsWith('.mp4') || key.endsWith('.avi')) {
+    } else if (key.endsWith('.mp4') || key.endsWith('.avi') || key.endsWith('.webm')) {
       return 'video'
     }
     return 'file';

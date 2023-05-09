@@ -117,7 +117,7 @@ const components: Components<{
   },
   img: (props) => {
     const ext = props?.url?.split('.')?.pop();
-    if (['mp4', 'avi'].includes(ext)) {
+    if (['mp4', 'avi', 'webm'].includes(ext)) {
       return <div className="flex items-center justify-center">
         <video width="100%" height="100%" controls>
           <source src={props.url} />
@@ -132,7 +132,7 @@ const components: Components<{
   },
   video: (props) => {
     const ext = props?.url?.split('.')?.pop();
-    if (!['mp4', 'avi'].includes(ext)) {
+    if (!['mp4', 'avi', 'webm'].includes(ext)) {
       return <div className="flex items-center justify-center">
         <img src={props.url} />
       </div>
@@ -234,7 +234,7 @@ export const Post = (props) => {
             data-tinafield="heroImg"
             className="relative max-w-4xl lg:max-w-5xl mx-auto"
           >
-            {(props.heroImg.endsWith('mp4') || props.heroImg.endsWith('avi')) &&
+            {(props.heroImg.endsWith('mp4') || props.heroImg.endsWith('avi') || props.heroImg.endsWith('webm')) &&
               (
                 <div>
                   <video
@@ -259,7 +259,7 @@ export const Post = (props) => {
                 </div>
               )
             }
-            {!(props.heroImg.endsWith('mp4') || props.heroImg.endsWith('avi')) &&
+            {!(props.heroImg.endsWith('mp4') || props.heroImg.endsWith('avi') || props.heroImg.endsWith('webm')) &&
               <div>
                 <img
                   src={props.heroImg}
