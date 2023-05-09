@@ -154,6 +154,17 @@ const config = defineConfig({
                 },
               },
               {
+                name: 'video',
+                label: 'Video',
+                fields: [
+                  {
+                    type: 'image',
+                    name: 'url',
+                    label: 'Video file',
+                  }
+                ],
+              },
+              {
                 name: 'Youtube',
                 label: 'Youtube Embed',
                 fields: [

@@ -43,6 +43,9 @@ const components: Components<{
     iframeSrc: string;
     height: number;
   };
+  video: {
+    url: string;
+  }
 }> = {
   code_block: (props) => <Prism {...props} />,
   BlockQuote: (props: {
@@ -113,7 +116,7 @@ const components: Components<{
     );
   },
   img: (props) => {
-    const ext = props.url.split('.').pop();
+    const ext = props?.url?.split('.')?.pop();
     if (['mp4', 'avi'].includes(ext)) {
       return <div className="flex items-center justify-center">
         <video width="100%" height="100%" controls>
@@ -125,6 +128,21 @@ const components: Components<{
     return <div className="flex items-center justify-center">
       <img src={props.url} alt={props.alt} />
     </div>
+
+  },
+  video: (props) => {
+    const ext = props?.url?.split('.')?.pop();
+    if (!['mp4', 'avi'].includes(ext)) {
+      return <div className="flex items-center justify-center">
+        <img src={props.url} />
+      </div>
+    }
+      return <div className="flex items-center justify-center">
+        <video width="100%" height="100%" controls>
+          <source src={props.url} />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
   },
   Iframe: ({ iframeSrc, height }) => {
@@ -241,16 +259,20 @@ export const Post = (props) => {
                 </div>
               )
             }
-            <img
-              src={props.heroImg}
-              className="absolute block rounded-lg w-full h-auto blur-2xl brightness-150 contrast-[0.9] dark:brightness-150 saturate-200 opacity-50 dark:opacity-30 mix-blend-multiply dark:mix-blend-hard-light"
-              aria-hidden="true"
-            />
-            <img
-              src={props.heroImg}
-              alt={props.title}
-              className="relative z-10 mb-14 block rounded-lg w-full h-auto opacity-100"
-            />
+            {!(props.heroImg.endsWith('mp4') || props.heroImg.endsWith('avi')) &&
+              <div>
+                <img
+                  src={props.heroImg}
+                  className="absolute block rounded-lg w-full h-auto blur-2xl brightness-150 contrast-[0.9] dark:brightness-150 saturate-200 opacity-50 dark:opacity-30 mix-blend-multiply dark:mix-blend-hard-light"
+                  aria-hidden="true"
+                />
+                <img
+                  src={props.heroImg}
+                  alt={props.title}
+                  className="relative z-10 mb-14 block rounded-lg w-full h-auto opacity-100"
+                />
+              </div>
+            }
           </div>
         </div>
       )}
