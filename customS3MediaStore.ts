@@ -95,7 +95,6 @@ export class CustomS3MediaStore implements MediaStore {
 
     try {
       const data = await client.send(command);
-      console.log('command data', data);
       const items = data.Contents?.map((file) => {
         return {
           id: file.Key,
@@ -109,7 +108,6 @@ export class CustomS3MediaStore implements MediaStore {
             ['400x400']: `https://kingdom-tinacms-store.s3.us-east-1.amazonaws.com${directory ? '/' + directory : ''}/${file.Key}`,
           },
       } as Media});
-      console.log('media items', items);
       return {
         items,
         nextOffset: offset,
@@ -118,23 +116,6 @@ export class CustomS3MediaStore implements MediaStore {
     } catch (err) {
       console.error(err);
       throw err
-    }
-
-    // if (response.status == 401) {
-    //   throw E_UNAUTHORIZED
-    // }
-    // if (response.status == 404) {
-    //   throw E_BAD_ROUTE
-    // }
-    // if (response.status >= 500) {
-    //   const { e } = await response.json()
-    //   const error = interpretErrorMessage(e)
-    //   throw error
-    // }
-    // const { items, offset } = await response.json()
-    return {
-      items: [], // items.map((item) => item),
-      nextOffset: options.offset,
     }
   }
 
@@ -145,28 +126,10 @@ export class CustomS3MediaStore implements MediaStore {
   getFileType(key: string) {
     if (key.endsWith('.jpg') || key.endsWith('.jpeg') || key.endsWith('.png') || key.endsWith('.gif')) {
       return 'image'
-    } else if (key.endsWith('.pm4') || key.endsWith('.avi')) {
+    } else if (key.endsWith('.mp4') || key.endsWith('.avi')) {
       return 'video'
     }
     return 'file';
-  }
-
-  streamToString = (stream): Promise<string> => {
-    const chunks = [];
-    return new Promise((resolve, reject) => {
-      stream.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
-      stream.on('error', (err) => reject(err));
-      stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
-    })
-  }
-
-  private buildQuery(options: any) {
-    const params = Object.keys(options)
-      .filter((key) => options[key] !== '' && options[key] !== undefined)
-      .map((key) => `${key}=${options[key]}`)
-      .join('&')
-
-    return `?${params}`
   }
 
 }
