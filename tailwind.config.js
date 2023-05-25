@@ -17,6 +17,16 @@ module.exports = {
       purple: colors.purple,
       pink: colors.pink,
       yellow: colors.yellow,
+
+      gold: {
+        DEFAULT: "#FBBD3F",
+        light: "#F2D46A",
+        lighter: "#EEDA74",
+        lightest: "#F3CD7F",
+        dark: "#F0D870",
+        gradient1: "#FAC14D",
+      },
+
       gray: {
         50: "#F6F6F9",
         100: "#EDECF3",
@@ -99,8 +109,8 @@ module.exports = {
         "-1": "-1",
       },
       fontFamily: {
-        nunito: ["Nunito", ...defaultTheme.fontFamily.sans],
-        lato: ["Lato", ...defaultTheme.fontFamily.sans],
+        sans: ["Inter", "ui-sans-serif", "system-ui"],
+        serif: ["MONSTER OF FANTASY", "ui-serif"],
       },
       typography: (theme) => ({
         DEFAULT: {

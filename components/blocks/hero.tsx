@@ -44,7 +44,7 @@ export const Hero = ({ data, parentField }) => {
                 className={`bg-clip-text text-transparent bg-gradient-to-r  ${
                   data.color === "primary"
                     ? `from-white to-gray-100`
-                    : headlineColorClasses[theme.color]
+                    : '#000000'
                 }`}
               >
                 {data.headline}

@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "MONSTER OF FANTASY";
+  src: url("./assets/fonts/monster-of-fantasy.otf") format("opentype");
+}
