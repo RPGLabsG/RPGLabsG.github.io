@@ -6,3 +6,16 @@
   font-family: "MONSTER OF FANTASY";
   src: url("./assets/fonts/monster-of-fantasy.otf") format("opentype");
 }
+
+body {
+  background: url("~/assets/images/backgrounds/map-bg.png") center top / contain
+    no-repeat;
+  background-color: white;
+}
+
+.footer-main {
+  min-height: 100vh;
+  background: url("~/assets/images/backgrounds/bg-footer.jpg") center bottom /
+    contain no-repeat;
+  background-color: white;
+}

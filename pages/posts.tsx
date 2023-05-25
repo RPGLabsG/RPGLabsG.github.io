@@ -12,8 +12,14 @@ export default function HomePage(
   return (
     <Layout>
       <Section className="flex-1">
-        <Container size="large" width="small">
-          <Posts data={posts} />
+        <Container size="large" width="small" className="">
+          <div className="flex justify-center">
+            <img src="/images/news-articles-header.png" alt="News and articles"  className="h-[126px] font-serif text-[48px]" />
+          </div>
+          <div className="-mx-4 flex flex-wrap mt-10">
+            <Posts data={posts} />
+          </div>
+          
         </Container>
       </Section>
     </Layout>
