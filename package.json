@@ -13,7 +13,8 @@
     "start-only": "next start",
     "export-local": "dotenv -e .env.local yarn export",
     "export": "npm run build && next export",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "build-next": "next build"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",

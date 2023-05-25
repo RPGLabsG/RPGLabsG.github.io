@@ -22,12 +22,7 @@ export const Section = ({ children, color = "", className = "" }) => {
         "text-white bg-yellow-500 bg-gradient-to-br from-yellow-500 to-yellow-600",
     },
   };
-  const sectionColorCss =
-    color === "primary"
-      ? sectionColor.primary[theme.color]
-      : sectionColor[color]
-      ? sectionColor[color]
-      : sectionColor.default;
+  const sectionColorCss = 'default';
 
   return (
     <section
