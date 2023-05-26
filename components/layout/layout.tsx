@@ -14,6 +14,7 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""></link>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"></link>
+        <link rel="icon" type="image/png" href="/favicon.png"></link>
       </Head>
       <Theme >
         <div
