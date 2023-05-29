@@ -1,6 +1,7 @@
 import { Container } from "../components/util/container";
 import { Section } from "../components/util/section";
 import { Posts } from "../components/posts";
+import { FeaturedPosts } from "../components/posts/featured-posts";
 import { client } from "../tina/__generated__/client";
 import { Layout } from "../components/layout";
 
@@ -17,6 +18,7 @@ export default function HomePage(
             <img src="/images/news-articles-header.png" alt="News and articles"  className="h-[126px] font-serif text-[48px]" />
           </div>
           <div className="-mx-4 flex flex-wrap mt-10">
+            <FeaturedPosts data={posts.slice(0, 2)}/>
             <Posts data={posts} />
           </div>
           

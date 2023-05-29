@@ -74,6 +74,12 @@ const config = defineConfig({
           },
           {
             type: "reference",
+            label: "Category",
+            name: "category",
+            collections: ["category"],
+          },
+          {
+            type: "reference",
             label: "Author",
             name: "author",
             collections: ["author"],
@@ -363,6 +369,21 @@ const config = defineConfig({
             type: "string",
             label: "Avatar",
             name: "avatar",
+          },
+        ],
+      },
+      {
+        label: "Categories",
+        name: "category",
+        path: "content/categories",
+        format: "md",
+        fields: [
+          {
+            type: "string",
+            label: "Name",
+            name: "name",
+            isTitle: true,
+            required: true,
           },
         ],
       },
