@@ -35,21 +35,45 @@ export const FeaturedPosts = ({ data }) => {
               className="group block mb-8 last:mb-0  h-full"
             >
               {/* POst image */}
-              <div className="relative pb-[70%] overflow-hidden">
-                <OrnamentTopLeft className="absolute left-5 top-5 z-[10]"></OrnamentTopLeft>
-                <OrnamentTopRight className="absolute right-5 top-5 z-[10]"></OrnamentTopRight>
-                <OrnamentBottomLeft className="absolute left-5 bottom-5 z-[10]"></OrnamentBottomLeft>
-                <OrnamentBottomRight className="absolute right-5 bottom-5 z-[10]"></OrnamentBottomRight>
-                <img className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover" src={post?._values.heroImg} alt="" />
-              </div>
+              {
+                !post?._values.heroImg ? 
+                  <div className="relative pb-[70%] overflow-hidden bg-gold-gradient1/10">
+                    <OrnamentTopLeft className="absolute left-5 top-5 z-[10]"></OrnamentTopLeft>
+                    <OrnamentTopRight className="absolute right-5 top-5 z-[10]"></OrnamentTopRight>
+                    <OrnamentBottomLeft className="absolute left-5 bottom-5 z-[10]"></OrnamentBottomLeft>
+                    <OrnamentBottomRight className="absolute right-5 bottom-5 z-[10]"></OrnamentBottomRight>
+                  </div>
+                : post?._values.heroImg.endsWith(".mp4") ?
+                  <div className="relative pb-[70%] overflow-hidden bg-gold-gradient1/10">
+                    <OrnamentTopLeft className="absolute left-5 top-5 z-[10]"></OrnamentTopLeft>
+                    <OrnamentTopRight className="absolute right-5 top-5 z-[10]"></OrnamentTopRight>
+                    <OrnamentBottomLeft className="absolute left-5 bottom-5 z-[10]"></OrnamentBottomLeft>
+                    <OrnamentBottomRight className="absolute right-5 bottom-5 z-[10]"></OrnamentBottomRight>
+                    <video autoPlay muted loop className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full" src={post?._values.heroImg} >
+                      <source src={post?._values.heroImg} />
+                    </video>
+                  </div>
+                :  
+                  <div className="relative pb-[70%] overflow-hidden">
+                    <OrnamentTopLeft className="absolute left-5 top-5 z-[10]"></OrnamentTopLeft>
+                    <OrnamentTopRight className="absolute right-5 top-5 z-[10]"></OrnamentTopRight>
+                    <OrnamentBottomLeft className="absolute left-5 bottom-5 z-[10]"></OrnamentBottomLeft>
+                    <OrnamentBottomRight className="absolute right-5 bottom-5 z-[10]"></OrnamentBottomRight>
+                    <img className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full" src={post?._values.heroImg} alt="" />
+                  </div>
+              }
               
 
               {/* Caregory */}
-              <div className="flex justify-start">
-                <div className="bg-neutral-900 px-2 py-1 text-xs w-auto text-white mt-10">
-                  CATEGORY
+              {
+                post.category ? 
+                <div className="flex justify-start">
+                  <div className="bg-neutral-900 px-2 py-1 text-xs w-auto text-white mt-10">
+                    {post.category?.name}
+                  </div>
                 </div>
-              </div>
+                : <div className="mt-7"></div>
+              }
 
                 
               {/* Title */}

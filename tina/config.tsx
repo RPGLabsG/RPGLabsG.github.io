@@ -68,7 +68,7 @@ const config = defineConfig({
             label: "Hero Image",
           },
           {
-            type: "rich-text",
+            type: "string",
             label: "Excerpt",
             name: "excerpt",
           },

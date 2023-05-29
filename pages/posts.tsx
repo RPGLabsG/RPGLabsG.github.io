@@ -16,8 +16,6 @@ export default function HomePage(
 
   const categories = props.categories;
 
-
-
   return (
     <Layout>
       <Section className="flex-1">
@@ -52,13 +50,13 @@ export default function HomePage(
               })}
 
               <div className="ml-6">
-                NUMBER OF POSTS: { posts.length }  
+                NUMBER OF POSTS: { selectedCategory === 'ALL' ? posts.length : posts.filter((el) => el.node.category && el.node.category?.name === selectedCategory).length }
                 
               </div>
 
             </div>
 
-            <Posts data={posts} />
+            <Posts data={selectedCategory === 'ALL' ? posts : posts.filter((el) => el.node.category && el.node.category?.name === selectedCategory)} />
           </div>
           
         </Container>
