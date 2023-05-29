@@ -19,3 +19,19 @@ body {
     contain no-repeat;
   background-color: white;
 }
+
+.border-gradient {
+  border: 2px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+}
+
+.border-gradient-gold {
+  border-image-source: linear-gradient(
+    to left,
+    #eeda74,
+    #fbbd3f,
+    #f3cd7f,
+    #eeda74
+  );
+}

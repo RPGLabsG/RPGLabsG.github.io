@@ -4,11 +4,19 @@ import { Posts } from "../components/posts";
 import { FeaturedPosts } from "../components/posts/featured-posts";
 import { client } from "../tina/__generated__/client";
 import { Layout } from "../components/layout";
+import { useState } from "react";
 
 export default function HomePage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
 ) {
+
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
+
   const posts = props.data.postConnection.edges;
+
+  const categories = props.categories;
+
+
 
   return (
     <Layout>
@@ -19,6 +27,37 @@ export default function HomePage(
           </div>
           <div className="-mx-4 flex flex-wrap mt-10">
             <FeaturedPosts data={posts.slice(0, 2)}/>
+
+            <div className="flex justify-start w-full items-center mb-16">
+              
+              <div>
+                <button 
+                  className={`border-gradient border-gradient-gold px-3 py-4 text-xs ml-4 ${selectedCategory === 'ALL' ? 'bg-gold' : ''}`} 
+                  onClick={() => setSelectedCategory('ALL')}
+                >
+                  ALL
+                </button>
+              </div>
+              {categories.map((category) => {
+                return (
+                  <div>
+                    <button 
+                      className={`border-gradient border-gradient-gold px-3 py-4 text-xs ml-4 ${selectedCategory === category.name ? 'bg-gold' : ''}`} 
+                      onClick={() => setSelectedCategory(category.name)}
+                    >
+                      {category.name}
+                    </button>
+                  </div>
+                );
+              })}
+
+              <div className="ml-6">
+                NUMBER OF POSTS: { posts.length }  
+                
+              </div>
+
+            </div>
+
             <Posts data={posts} />
           </div>
           
@@ -30,12 +69,20 @@ export default function HomePage(
 
 export const getStaticProps = async () => {
   const tinaProps = await client.queries.pageQuery();
+  const categoriesResponse = await client.queries.categoryConnection();
+
+  const categories = categoriesResponse.data.categoryConnection.edges.map((post) => {
+    return { name: post.node.name }
+  })
+
   return {
     props: {
       ...tinaProps,
+      categories,
     },
   };
 };
+
 
 export type AsyncReturnType<T extends (...args: any) => Promise<any>> =
   T extends (...args: any) => Promise<infer R> ? R : any;
