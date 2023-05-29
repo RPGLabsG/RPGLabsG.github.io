@@ -27,6 +27,11 @@ module.exports = {
         gradient1: "#FAC14D",
       },
 
+      neutral: {
+        700: "#171717",
+        900: "#070707",
+      },
+
       gray: {
         50: "#F6F6F9",
         100: "#EDECF3",

@@ -22,8 +22,8 @@ export const Header = () => {
     <div
       className={`relative overflow-hidden `} // ${headerColorCss}
     >
-      <OrnamentLeft class="absolute left-6 top-16"></OrnamentLeft>
-      <OrnamentRight class="absolute right-6 top-16"></OrnamentRight>
+      <OrnamentLeft className="absolute left-6 top-16"></OrnamentLeft>
+      <OrnamentRight className="absolute right-6 top-16"></OrnamentRight>
       <Container size="custom" className="py-0 relative z-10 max-w-8xl">
         <div className="flex mt-12 p-4 justify-between items-center"> 
           <img src="https://the-kingdom.world/_nuxt/logo_2x.b97e82d7.webp"  className="h-20" />
