@@ -21,16 +21,17 @@ export default function HomePage(
       <Section className="flex-1">
         <Container size="large" width="small" className="">
           <div className="flex justify-center">
-            <img src="/images/news-articles-header.png" alt="News and articles"  className="h-[126px] font-serif text-[48px]" />
+            <img src="/images/news-articles-header.png" alt="News and articles"  className="w-[324px] md:w-auto md:h-[126px] font-serif text-[48px]" />
           </div>
+
           <div className="-mx-4 flex flex-wrap mt-10">
             <FeaturedPosts data={posts.slice(0, 2)}/>
 
-            <div className="flex justify-start w-full items-center mb-16">
+            <div className="flex justify-start w-full items-center mb-16 flex-wrap">
               
               <div>
                 <button 
-                  className={`border-gradient border-gradient-gold px-3 py-4 text-xs ml-4 ${selectedCategory === 'ALL' ? 'bg-gold' : ''}`} 
+                  className={`border-gradient border-gradient-gold px-3 py-4 text-xs ml-4 mt-2 md:mt-0 ${selectedCategory === 'ALL' ? 'bg-gold' : ''}`} 
                   onClick={() => setSelectedCategory('ALL')}
                 >
                   ALL
@@ -40,7 +41,7 @@ export default function HomePage(
                 return (
                   <div>
                     <button 
-                      className={`border-gradient border-gradient-gold px-3 py-4 text-xs ml-4 ${selectedCategory === category.name ? 'bg-gold' : ''}`} 
+                      className={`border-gradient border-gradient-gold px-3 py-4 text-xs ml-4 mt-2 md:mt-0 ${selectedCategory === category.name ? 'bg-gold' : ''}`} 
                       onClick={() => setSelectedCategory(category.name)}
                     >
                       {category.name}
@@ -49,9 +50,8 @@ export default function HomePage(
                 );
               })}
 
-              <div className="ml-6">
+              <div className="ml-6 mt-4 md:mt-0 w-full md:w-auto">
                 NUMBER OF POSTS: { selectedCategory === 'ALL' ? posts.length : posts.filter((el) => el.node.category && el.node.category?.name === selectedCategory).length }
-                
               </div>
 
             </div>

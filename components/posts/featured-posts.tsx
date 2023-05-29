@@ -20,9 +20,8 @@ export const FeaturedPosts = ({ data }) => {
         if (!isNaN(date.getTime())) {
           formattedDate = format(date, "MMM dd, yyyy");
         }
-        console.log('post: ', post)
         return (
-          <div className="px-4 w-1/2 pb-8">
+          <div className="px-4 w-full md:w-1/2 pb-8">
             
           <Link
             key={post._sys.filename}

@@ -18,10 +18,10 @@ export const Footer = ({ rawData }) => {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center mt-10">
-            <a href="" className="font-sans mx-10">Terms & Conditions</a>
-            <a href="" className="font-sans mx-10">Cookies</a>
-            <a href="" className="font-sans mx-10">Privacy policy</a>
+          <div className="flex items-center justify-center mt-10 flex-wrap">
+            <a href="" className="font-sans mx-10 mt-4">Terms & Conditions</a>
+            <a href="" className="font-sans mx-10 mt-4">Cookies</a>
+            <a href="" className="font-sans mx-10 mt-4">Privacy policy</a>
           </div>
           
         </div>
