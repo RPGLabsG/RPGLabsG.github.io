@@ -4,10 +4,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BsArrowRight } from "react-icons/bs";
 import { useTheme } from "../layout";
 import format from "date-fns/format";
-import OrnamentTopLeft from '../../assets/icons/posts/ornament-top-left.svg'
-import OrnamentTopRight from '../../assets/icons/posts/ornament-top-right.svg'
-import OrnamentBottomLeft from '../../assets/icons/posts/ornament-bottom-left.svg'
-import OrnamentBottomRight from '../../assets/icons/posts/ornament-bottom-right.svg'
+
 
 export const FeaturedPosts = ({ data }) => {
 
@@ -37,27 +34,17 @@ export const FeaturedPosts = ({ data }) => {
               {
                 !post?._values.heroImg ? 
                   <div className="relative pb-[70%] overflow-hidden bg-gold-gradient1/10">
-                    <OrnamentTopLeft className="absolute left-5 top-5 z-[10]"></OrnamentTopLeft>
-                    <OrnamentTopRight className="absolute right-5 top-5 z-[10]"></OrnamentTopRight>
-                    <OrnamentBottomLeft className="absolute left-5 bottom-5 z-[10]"></OrnamentBottomLeft>
-                    <OrnamentBottomRight className="absolute right-5 bottom-5 z-[10]"></OrnamentBottomRight>
+
                   </div>
                 : post?._values.heroImg.endsWith(".mp4") ?
                   <div className="relative pb-[70%] overflow-hidden bg-gold-gradient1/10">
-                    <OrnamentTopLeft className="absolute left-5 top-5 z-[10]"></OrnamentTopLeft>
-                    <OrnamentTopRight className="absolute right-5 top-5 z-[10]"></OrnamentTopRight>
-                    <OrnamentBottomLeft className="absolute left-5 bottom-5 z-[10]"></OrnamentBottomLeft>
-                    <OrnamentBottomRight className="absolute right-5 bottom-5 z-[10]"></OrnamentBottomRight>
+
                     <video autoPlay muted loop className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full" src={post?._values.heroImg} >
                       <source src={post?._values.heroImg} />
                     </video>
                   </div>
                 :  
                   <div className="relative pb-[70%] overflow-hidden">
-                    <OrnamentTopLeft className="absolute left-5 top-5 z-[10]"></OrnamentTopLeft>
-                    <OrnamentTopRight className="absolute right-5 top-5 z-[10]"></OrnamentTopRight>
-                    <OrnamentBottomLeft className="absolute left-5 bottom-5 z-[10]"></OrnamentBottomLeft>
-                    <OrnamentBottomRight className="absolute right-5 bottom-5 z-[10]"></OrnamentBottomRight>
                     <img className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full" src={post?._values.heroImg} alt="" />
                   </div>
               }

@@ -275,7 +275,7 @@ export const Post = (props) => {
         </div>
       )}
       <Container className={`flex-1 pt-4`} width="small" size="large">
-        <div className="prose dark:prose-dark w-full max-w-none">
+        <div className="prose dark:prose-dark w-full max-w-none font-sans">
           <TinaMarkdown components={components} content={props._body} />
         </div>
       </Container>

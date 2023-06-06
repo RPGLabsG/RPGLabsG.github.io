@@ -26,10 +26,18 @@ export const Header = () => {
       <OrnamentRight className="absolute right-6 top-6 md:top-16"></OrnamentRight>
       <Container size="custom" className="py-0 relative z-10 max-w-8xl">
         <div className="flex mt-12 p-4 justify-between items-center"> 
-          <img src="https://the-kingdom.world/_nuxt/logo_2x.b97e82d7.webp"  className="h-20" />
-          <div className="text-xs">
-            NEWS AND ARTICLES
-          </div>
+          <a href="https://the-kingdom.world/" target="_blank"><img src="https://the-kingdom.world/_nuxt/logo_2x.b97e82d7.webp"  className="h-20" /></a>
+          
+          <Link
+            href={`/`}
+            passHref
+          >
+            <div className="cursor-pointer text-xs">
+              NEWS AND ARTICLES
+            </div>
+
+          </Link>
+          
         </div>
      
       </Container>
