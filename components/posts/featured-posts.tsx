@@ -50,24 +50,25 @@ export const FeaturedPosts = ({ data }) => {
               }
               
 
-              {/* Caregory */}
-              {
-                post.category ? 
-                <div className="flex justify-start">
-                  <div className="bg-neutral-900 px-2 py-1 text-xs w-auto text-white mt-10">
-                    {post.category?.name}
-                  </div>
-                </div>
-                : <div className="mt-7"></div>
-              }
 
                 
               {/* Title */}
               <h3
-                className={`text-neutral-700 text-3xl lg:text-[36px] title-font mb-3 transition-all duration-150 ease-out mt-3`}
+                className={`text-neutral-700 text-3xl lg:text-[36px] title-font mb-3 transition-all duration-150 ease-out mt-5`}
               >
                 {post._values.title}{" "}
               </h3>
+
+              {/* Caregory */}
+              {
+                post.category ? 
+                <div className="flex justify-start">
+                  <div className="bg-neutral-900 px-2 py-1 text-xs w-auto text-white ">
+                    {post.category?.name}
+                  </div>
+                </div>
+                : <div className="mt-2"></div>
+              }
 
               {/* Excerpt */}
               <div className="prose dark:prose-dark w-full max-w-none mb-5 text-neutral-700">

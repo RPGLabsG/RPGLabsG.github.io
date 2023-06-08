@@ -21,8 +21,7 @@ body {
 }
 
 .border-gradient {
-  border: 2px solid;
-  border-image-slice: 1;
+  border-image-slice: 25;
   border-width: 2px;
 }
 

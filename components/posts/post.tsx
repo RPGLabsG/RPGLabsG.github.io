@@ -80,7 +80,7 @@ const components: Components<{
   NewsletterSignup: (props) => {
     return (
       <div className="bg-white">
-        <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[700px] mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <div className="">
             <TinaMarkdown content={props.children} />
           </div>
@@ -185,7 +185,7 @@ export const Post = (props) => {
   }
 
   return (
-    <Section className="flex-1">
+    <Section className="flex-1 max-w-[900px] mx-auto">
       <Container width="small" className={`flex-1 pb-2`} size="large">
         <h2
           data-tinafield="title"
