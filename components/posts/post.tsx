@@ -225,9 +225,6 @@ export const Post = (props) => {
         </div>
       </Container>
 
-      {/* Line */}
-      {/* <div className="w-full h-[1px] bg-neutral-900"></div> */}
-
       {/* Image */}
       {props.heroImg && (
         <div className="px-4 w-full">
@@ -283,7 +280,10 @@ export const Post = (props) => {
           </div>
         </div>
       )}
+      {/* Line */}
+      <div className="w-full h-[1px] bg-neutral-900 my-8"></div>
 
+      {/* Content */}
       <Container className={`flex-1 pt-4`} width="small" size="large">
         <div className="prose dark:prose-dark w-full max-w-none font-sans">
           <TinaMarkdown components={components} content={props._body} />

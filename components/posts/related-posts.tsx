@@ -16,7 +16,7 @@ export const RelatedPosts = ({ data }) => {
           formattedDate = format(date, "MMM dd, yyyy");
         }
         return (
-          <div className="px-4 w-full md:w-1/3 pb-8">
+          <div className="px-4 w-full md:w-1/3 pb-8 transition-all">
             <Link
               key={post._sys.filename}
               href={`/posts/` + post._sys.filename}
