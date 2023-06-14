@@ -5,19 +5,15 @@ const ThemeContext = React.createContext(GlobalData.theme);
 
 export const useTheme = () => React.useContext(ThemeContext);
 
-const myGlobalVar = 'Test global var'
+const myGlobalVar = "Test global var";
 
 export const Theme = ({ children }) => {
-
   React.useEffect(() => {
-
     return;
   }, []);
 
-
-
   React.useEffect(() => {
-    return
+    return;
   }, []);
 
   return (

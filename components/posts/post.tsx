@@ -45,7 +45,7 @@ const components: Components<{
   };
   video: {
     url: string;
-  }
+  };
 }> = {
   code_block: (props) => <Prism {...props} />,
   BlockQuote: (props: {
@@ -116,41 +116,47 @@ const components: Components<{
     );
   },
   img: (props) => {
-    const ext = props?.url?.split('.')?.pop();
-    if (['mp4', 'avi', 'webm'].includes(ext)) {
-      return <div className="flex items-center justify-center">
-        <video width="100%" height="100%" controls>
-          <source src={props.url} />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+    const ext = props?.url?.split(".")?.pop();
+    if (["mp4", "avi", "webm"].includes(ext)) {
+      return (
+        <div className="flex items-center justify-center">
+          <video width="100%" height="100%" controls>
+            <source src={props.url} />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      );
     }
-    return <div className="flex items-center justify-center">
-      <img src={props.url} alt={props.alt} />
-    </div>
-
+    return (
+      <div className="flex items-center justify-center">
+        <img src={props.url} alt={props.alt} />
+      </div>
+    );
   },
   video: (props) => {
-    const ext = props?.url?.split('.')?.pop();
-    if (!['mp4', 'avi', 'webm'].includes(ext)) {
-      return <div className="flex items-center justify-center">
-        <img src={props.url} />
-      </div>
+    const ext = props?.url?.split(".")?.pop();
+    if (!["mp4", "avi", "webm"].includes(ext)) {
+      return (
+        <div className="flex items-center justify-center">
+          <img src={props.url} />
+        </div>
+      );
     }
-      return <div className="flex items-center justify-center">
+    return (
+      <div className="flex items-center justify-center">
         <video width="100%" height="100%" controls>
           <source src={props.url} />
           Your browser does not support the video tag.
         </video>
       </div>
-
+    );
   },
   Iframe: ({ iframeSrc, height }) => {
-    return <iframe width="100%" height={`${height}px`} src={iframeSrc} />
+    return <iframe width="100%" height={`${height}px`} src={iframeSrc} />;
   },
   Youtube: ({ embedSrc, width, height }) => (
     <iframe
-      style={{margin: 'auto'}}
+      style={{ margin: "auto" }}
       width={width ? `${width}px` : `560`}
       height={height ? `${height}px` : `315`}
       src={embedSrc}
@@ -164,19 +170,6 @@ const components: Components<{
 
 export const Post = (props) => {
   const theme = useTheme();
-  const titleColorClasses = {
-    blue: "from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500",
-    teal: "from-teal-400 to-teal-600 dark:from-teal-300 dark:to-teal-500",
-    green: "from-green-400 to-green-600",
-    red: "from-red-400 to-red-600",
-    pink: "from-pink-300 to-pink-500",
-    purple:
-      "from-purple-400 to-purple-600 dark:from-purple-300 dark:to-purple-500",
-    orange:
-      "from-orange-300 to-orange-600 dark:from-orange-200 dark:to-orange-500",
-    yellow:
-      "from-yellow-400 to-yellow-500 dark:from-yellow-300 dark:to-yellow-500",
-  };
 
   const date = new Date(props.date);
   let formattedDate = "";
@@ -189,14 +182,17 @@ export const Post = (props) => {
       <Container width="small" className={`flex-1 pb-2`} size="large">
         <h2
           data-tinafield="title"
-          className={`w-full relative	mb-8 text-6xl font-extrabold tracking-normal text-center title-font`}
+          className={`w-full relative	mb-8 text-6xl tracking-normal text-center title-font`}
         >
           <span
-            className={`bg-clip-text text-transparent bg-gradient-to-r bg-gold`}
+            className={`bg-clip-text text-transparent bg-gradient-to-r bg-neutral-900`}
           >
             {props.title}
           </span>
         </h2>
+
+        <h4 className="text-center">{props.category?.name}</h4>
+
         <div
           data-tinafield="author"
           className="flex items-center justify-center mb-16"
@@ -232,32 +228,38 @@ export const Post = (props) => {
             data-tinafield="heroImg"
             className="relative max-w-4xl lg:max-w-5xl mx-auto"
           >
-            {(props.heroImg.endsWith('mp4') || props.heroImg.endsWith('avi') || props.heroImg.endsWith('webm')) &&
-              (
-                <div>
-                  <video
-                    src={props.heroImg}
-                    width="100%" height="100%"
-                    className="absolute block rounded-lg w-full h-auto blur-2xl brightness-150 contrast-[0.9] dark:brightness-150 saturate-200 opacity-50 dark:opacity-30 mix-blend-multiply dark:mix-blend-hard-light"
-                    aria-hidden="true"
-                    controls
-                  >
-                    <source src={props.heroImg} />
-                    Your browser does not support the video tag.
-                  </video>
-                  <video
-                    src={props.heroImg}
-                    width="100%" height="100%"
-                    className="relative z-10 mb-14 block rounded-lg w-full h-auto opacity-100"
-                    controls
-                  > 
-                    <source src={props.heroImg} />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              )
-            }
-            {!(props.heroImg.endsWith('mp4') || props.heroImg.endsWith('avi') || props.heroImg.endsWith('webm')) &&
+            {(props.heroImg.endsWith("mp4") ||
+              props.heroImg.endsWith("avi") ||
+              props.heroImg.endsWith("webm")) && (
+              <div>
+                <video
+                  src={props.heroImg}
+                  width="100%"
+                  height="100%"
+                  className="absolute block rounded-lg w-full h-auto blur-2xl brightness-150 contrast-[0.9] dark:brightness-150 saturate-200 opacity-50 dark:opacity-30 mix-blend-multiply dark:mix-blend-hard-light"
+                  aria-hidden="true"
+                  controls
+                >
+                  <source src={props.heroImg} />
+                  Your browser does not support the video tag.
+                </video>
+                <video
+                  src={props.heroImg}
+                  width="100%"
+                  height="100%"
+                  className="relative z-10 mb-14 block rounded-lg w-full h-auto opacity-100"
+                  controls
+                >
+                  <source src={props.heroImg} />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            )}
+            {!(
+              props.heroImg.endsWith("mp4") ||
+              props.heroImg.endsWith("avi") ||
+              props.heroImg.endsWith("webm")
+            ) && (
               <div>
                 <img
                   src={props.heroImg}
@@ -270,7 +272,7 @@ export const Post = (props) => {
                   className="relative z-10 mb-14 block rounded-lg w-full h-auto opacity-100"
                 />
               </div>
-            }
+            )}
           </div>
         </div>
       )}

@@ -1,7 +1,9 @@
 import { Post } from "../../components/posts/post";
 import { client } from "../../tina/__generated__/client";
 import { useTina } from "tinacms/dist/react";
-import { Layout } from "../../components/layout";
+import { Layout, useTheme } from "../../components/layout";
+import { RelatedPosts } from "../../components/posts/related-posts";
+import { useState } from "react";
 
 // Use the props returned by get static props
 export default function BlogPostPage(
@@ -12,10 +14,60 @@ export default function BlogPostPage(
     variables: props.variables,
     data: props.data,
   });
+
+  const posts = props.postsResponse.data.postConnection.edges;
+
+  const [showAll, setShowAll] = useState(false);
+
   if (data && data.post) {
     return (
       <Layout rawData={data} data={data.global as any}>
-        <Post {...data.post} />
+        <div className="mx-auto">
+          <Post {...data.post} />
+          <div className="flex justify-center">
+            <img
+              src="/images/related-articles.png"
+              alt="News and articles"
+              className="w-[324px] md:w-auto md:h-[126px] font-serif text-[48px]"
+            />
+          </div>
+          <div className="flex flex-wrap max-w-7xl mt-8 md:mt-16">
+            <RelatedPosts
+              data={
+                showAll
+                  ? posts.filter(
+                      (el) => el.node.category?.name === data.post.category.name
+                    )
+                  : posts
+                      .slice(0, 3)
+                      .filter(
+                        (el) =>
+                          el.node.category?.name === data.post.category.name
+                      )
+              }
+            />
+          </div>
+          {posts.filter(
+            (el) => el.node.category?.name === data.post.category.name
+          ).length < 1 ? (
+            <p className="text-center">No related articles</p>
+          ) : posts.filter(
+              (el) => el.node.category?.name === data.post.category.name
+            ).length > 3 ? (
+            <div className="flex justify-center">
+              <button
+                className={`border-gradient border-gradient-gold px-3 py-4 text-xs ml-4 mt-2 md:mt-0 min-w-[104px] ${
+                  showAll === true ? "bg-gold" : ""
+                }`}
+                onClick={() => setShowAll(!showAll)}
+              >
+                {showAll ? "HIDE" : "SHOW ALL"}
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </Layout>
     );
   }
@@ -27,12 +79,15 @@ export default function BlogPostPage(
 }
 
 export const getStaticProps = async ({ params }) => {
+  const postsResponse = await client.queries.pageQuery();
+
   const tinaProps = await client.queries.blogPostQuery({
     relativePath: `${params.filename}.mdx`,
   });
   return {
     props: {
       ...tinaProps,
+      postsResponse,
     },
   };
 };
