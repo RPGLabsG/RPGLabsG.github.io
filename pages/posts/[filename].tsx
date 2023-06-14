@@ -41,12 +41,13 @@ export default function BlogPostPage(
                         el.node._values.title !== data.post.title
                     )
                   : posts
-                      .slice(0, 3)
+
                       .filter(
                         (el) =>
                           el.node.category?.name === data.post.category?.name &&
                           el.node._values.title !== data.post.title
                       )
+                      .slice(0, 3)
               }
             />
           </div>
