@@ -37,23 +37,29 @@ export default function BlogPostPage(
                 showAll
                   ? posts.filter(
                       (el) =>
-                        el.node.category?.name === data.post.category?.name
+                        el.node.category?.name === data.post.category?.name &&
+                        el.node._values.title !== data.post.title
                     )
                   : posts
                       .slice(0, 3)
                       .filter(
                         (el) =>
-                          el.node.category?.name === data.post.category?.name
+                          el.node.category?.name === data.post.category?.name &&
+                          el.node._values.title !== data.post.title
                       )
               }
             />
           </div>
           {posts.filter(
-            (el) => el.node.category?.name === data.post.category?.name
+            (el) =>
+              el.node.category?.name === data.post.category?.name &&
+              el.node._values.title !== data.post.title
           ).length < 1 ? (
             <p className="text-center">No related articles</p>
           ) : posts.filter(
-              (el) => el.node.category?.name === data.post.category?.name
+              (el) =>
+                el.node.category?.name === data.post.category?.name &&
+                el.node._values.title !== data.post.title
             ).length > 3 ? (
             <div className="flex justify-center">
               <button

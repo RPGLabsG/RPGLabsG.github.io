@@ -180,6 +180,7 @@ export const Post = (props) => {
   return (
     <Section className="flex-1 max-w-[900px] mx-auto">
       <Container width="small" className={`flex-1 pb-2`} size="large">
+        {/* title */}
         <h2
           data-tinafield="title"
           className={`w-full relative	mb-8 text-6xl tracking-normal text-center title-font`}
@@ -193,6 +194,7 @@ export const Post = (props) => {
 
         <h4 className="text-center">{props.category?.name}</h4>
 
+        {/* Author */}
         <div
           data-tinafield="author"
           className="flex items-center justify-center mb-16"
@@ -222,6 +224,11 @@ export const Post = (props) => {
           </p>
         </div>
       </Container>
+
+      {/* Line */}
+      {/* <div className="w-full h-[1px] bg-neutral-900"></div> */}
+
+      {/* Image */}
       {props.heroImg && (
         <div className="px-4 w-full">
           <div
@@ -276,6 +283,7 @@ export const Post = (props) => {
           </div>
         </div>
       )}
+
       <Container className={`flex-1 pt-4`} width="small" size="large">
         <div className="prose dark:prose-dark w-full max-w-none font-sans">
           <TinaMarkdown components={components} content={props._body} />
