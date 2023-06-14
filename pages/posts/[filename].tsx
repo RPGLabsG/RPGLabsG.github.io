@@ -36,23 +36,24 @@ export default function BlogPostPage(
               data={
                 showAll
                   ? posts.filter(
-                      (el) => el.node.category?.name === data.post.category.name
+                      (el) =>
+                        el.node.category?.name === data.post.category?.name
                     )
                   : posts
                       .slice(0, 3)
                       .filter(
                         (el) =>
-                          el.node.category?.name === data.post.category.name
+                          el.node.category?.name === data.post.category?.name
                       )
               }
             />
           </div>
           {posts.filter(
-            (el) => el.node.category?.name === data.post.category.name
+            (el) => el.node.category?.name === data.post.category?.name
           ).length < 1 ? (
             <p className="text-center">No related articles</p>
           ) : posts.filter(
-              (el) => el.node.category?.name === data.post.category.name
+              (el) => el.node.category?.name === data.post.category?.name
             ).length > 3 ? (
             <div className="flex justify-center">
               <button
