@@ -23,16 +23,16 @@ export const Header = () => {
       <div className="mt-10">
       <OrnamentLeft className="absolute left-6"></OrnamentLeft>
       <OrnamentRight className="absolute right-6"></OrnamentRight>
-      <div className="flex 3p-4 justify-between gap-10 items-center"> 
-          <div className="flex-shrink ml-16 sm:ml-32 mt-2">
+      <div className="flex 3p-4 justify-between gap-6 items-center flex-nowrap"> 
+          <div className="flex-shrink ml-14 sm:ml-32 mt-2">
             <a href="https://the-kingdom.world/" target="_blank"><img src="https://the-kingdom.world/_nuxt/logo_2x.b97e82d7.webp"  className="h-16" /></a>
           </div>
-          <div className="mr-16 sm:mr-32">
+          <div className="mr-14 sm:mr-32">
           <Link
             href={`/`}
             passHref
           >
-            <div className="cursor-pointer">
+            <div className="cursor-pointer flex-nowrap">
               NEWS AND ARTICLES
             </div>
 

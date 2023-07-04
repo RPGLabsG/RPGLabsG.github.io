@@ -21,7 +21,7 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
           className={`min-h-screen flex flex-col font-serif`}
         >
           <Header  />
-          <div className="flex-1 text-gray-800 bg-trasnparent flex flex-row">
+          <div className="flex-1 text-gray-800 bg-trasnparent flex flex-row ml-2 mr-2">
             {children}
           </div>
           <Footer
