@@ -12,7 +12,7 @@ export const Footer = ({ rawData }) => {
         <div className="w-full -mt-20">
           <div className="flex justify-center">
             <div className="flex items-center">
-              <KingdomLogo class="h-6"></KingdomLogo>
+              <KingdomLogo className="h-6"></KingdomLogo>
               <div className="font-sans ml-2">
                 © All Rights Reserved 2022
               </div>

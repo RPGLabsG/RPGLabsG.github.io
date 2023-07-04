@@ -15,10 +15,28 @@ body {
 
 .footer-main {
   min-height: 100vh;
-  background: url("~/assets/images/backgrounds/bg-footer.jpg") center bottom /
-    contain no-repeat;
+  background: url("~/assets/images/backgrounds/bg-footer.jpg") center bottom no-repeat;
+  background-size: 100% 100%;
   background-color: white;
 }
+
+@media screen and (min-width: 1500px) {
+  .footer-main {
+    min-height: 100vh;
+    background: url("~/assets/images/backgrounds/bg-footer-2560x1440.webp") center bottom no-repeat;
+    background-size: 100% 100%;
+    background-color: white;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .footer-main {
+    background: url("~/assets/images/backgrounds/bg-footer-600x815.webp") center bottom no-repeat;
+    background-size: 100% 100%;
+    background-color: white;
+  }
+}
+
 
 .border-gradient {
   border-image-slice: 25;
@@ -34,3 +52,20 @@ body {
     #eeda74
   );
 }
+
+.sticky-position {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 300px;
+}
+
+.background-header {
+  background: url("~/assets/images/backgrounds/cloud-tile-top.webp") center top no-repeat;
+  background-size: 200% 270px;
+  width: 100%;
+  height: 100%;
+}
+
+
