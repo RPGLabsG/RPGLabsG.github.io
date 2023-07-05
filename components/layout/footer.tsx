@@ -1,30 +1,17 @@
-import React from "react";
-import Link from "next/link";
+import KingdomLogo from '../../assets/icons/thekingdom-white.svg';
 import { Container } from "../util/container";
-import KingdomLogo from '../../assets/icons/kingdom-logo.svg'
 
 
 export const Footer = ({ rawData }) => {
 
   return (
-    <footer className={`bg-gradient-to-br footer-main`}>
-      <Container className="relative flex items-center h-screen" size="small">
-        <div className="w-full mt-32">
-          <div className="flex justify-center">
-            <div className="flex items-center">
-              <KingdomLogo className="h-6"></KingdomLogo>
-              <div className="font-sans ml-2">
-                © All Rights Reserved 2022
-              </div>
-            </div>
+    <footer className={`bg-gradient-to-br footer-main relative flex min-h-[240px] flex-col items-center justify-end`}>
+          <div className="flex justify-center pb-4">
+          <a href="https://the-kingdom.world/terms" className="font-sans sm:mx-6 mt-4 text-[10px] sm:text-xs text-white">Terms & Conditions</a>
+              <KingdomLogo className="scale-50 sm:scale-75"></KingdomLogo>
+            <a href="https://the-kingdom.world/privacy" className="font-sans sm:mx-6 mt-4 text-[10px] sm:text-xs text-white">Privacy policy</a>
+
           </div>
-          <div className="flex items-center justify-center mt-10 flex-wrap">
-            <a href="https://the-kingdom.world/terms" className="font-sans mx-10 mt-4">Terms & Conditions</a>
-            <a href="https://the-kingdom.world/privacy" className="font-sans mx-10 mt-4">Privacy policy</a>
-          </div>
-          
-        </div>
-      </Container>
     </footer>
   );
 };
