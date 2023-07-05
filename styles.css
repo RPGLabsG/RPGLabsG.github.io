@@ -23,7 +23,7 @@ body {
 
 @media screen and (min-width: 1500px) {
   .footer-main {
-    margin-top: -500px;
+    margin-top: -400px;
     min-height: 1400px;
     background: url("~/assets/images/backgrounds/bg-footer-2560x1440.webp") center bottom / contain no-repeat;
     background-color: white;
