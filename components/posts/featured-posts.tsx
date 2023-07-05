@@ -1,9 +1,6 @@
-import React from "react";
+import format from "date-fns/format";
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { BsArrowRight } from "react-icons/bs";
-import { useTheme } from "../layout";
-import format from "date-fns/format";
 
 
 export const FeaturedPosts = ({ data }) => {
@@ -57,7 +54,7 @@ export const FeaturedPosts = ({ data }) => {
                 className={`text-neutral-700 text-3xl lg:text-[36px] title-font mb-3 transition-all duration-150 ease-out mt-5`}
               >
                 {post._values.title}{" "}
-              </h3>
+                  </h3>
 
               {/* Caregory */}
               {
