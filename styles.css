@@ -14,14 +14,16 @@ body {
 }
 
 .footer-main {
-  min-height: 700px;
+  margin-top: -100px;
+  min-height: 600px;
   background: url("~/assets/images/backgrounds/bg-footer.jpg") center bottom / contain no-repeat;
-  background-color: white;
+  background-color: transparent;
 }
 
 @media screen and (min-width: 1500px) {
   .footer-main {
-    min-height: 1100px;
+    margin-top: -100px;
+    min-height: 1000px;
     background: url("~/assets/images/backgrounds/bg-footer-2560x1440.webp") center bottom / contain no-repeat;
     background-color: white;
   }
@@ -29,7 +31,8 @@ body {
 
 @media screen and (min-width: 1900px) {
   .footer-main {
-    min-height: 1600px;
+    margin-top: -150px;
+    min-height: 1200px;
     background: url("~/assets/images/backgrounds/bg-footer-3820x1996.webp") center bottom / contain no-repeat;
     background-color: white;
   }
@@ -38,6 +41,7 @@ body {
 
 @media screen and (max-width: 550px) {
   .footer-main {
+    margin-top: -120px;
     height: 815px;
     background: url("~/assets/images/backgrounds/bg-footer-600x815.webp") center bottom / contain no-repeat;
     background-color: white;
