@@ -9,7 +9,7 @@ export const Footer = ({ rawData }) => {
   return (
     <footer className={`bg-gradient-to-br footer-main`}>
       <Container className="relative flex items-center h-screen" size="small">
-        <div className="w-full -mt-20">
+        <div className="w-full mt-32">
           <div className="flex justify-center">
             <div className="flex items-center">
               <KingdomLogo className="h-6"></KingdomLogo>
