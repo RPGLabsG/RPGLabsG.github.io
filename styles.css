@@ -14,21 +14,31 @@ body {
 }
 
 .footer-main {
-  min-height: 100vh;
+  min-height: 700px;
   background: url("~/assets/images/backgrounds/bg-footer.jpg") center bottom / contain no-repeat;
   background-color: white;
 }
 
 @media screen and (min-width: 1500px) {
   .footer-main {
-    min-height: 100vh;
+    min-height: 1100px;
     background: url("~/assets/images/backgrounds/bg-footer-2560x1440.webp") center bottom / contain no-repeat;
     background-color: white;
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (min-width: 1900px) {
   .footer-main {
+    min-height: 1600px;
+    background: url("~/assets/images/backgrounds/bg-footer-3820x1996.webp") center bottom / contain no-repeat;
+    background-color: white;
+  }
+}
+
+
+@media screen and (max-width: 550px) {
+  .footer-main {
+    height: 815px;
     background: url("~/assets/images/backgrounds/bg-footer-600x815.webp") center bottom / contain no-repeat;
     background-color: white;
   }
