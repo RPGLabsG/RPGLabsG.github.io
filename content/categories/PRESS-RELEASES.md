@@ -1,4 +1,5 @@
 ---
-name: PRESS RELEASES
+name: News
 ---
+
 
