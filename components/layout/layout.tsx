@@ -12,21 +12,24 @@ export const Layout = ({ rawData = {}, data = layoutData, children }) => {
         <title>The Kingdom Blog</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""></link>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"></link>
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        ></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+          rel="stylesheet"
+        ></link>
         <link rel="icon" type="image/png" href="/favicon.png"></link>
       </Head>
-      <Theme >
-        <div
-          className={`min-h-screen flex flex-col font-serif`}
-        >
-          <Header  />
+      <Theme>
+        <div className={`min-h-screen flex flex-col font-serif relative z-10`}>
+          <Header />
           <div className="flex-1 text-gray-800 bg-trasnparent flex flex-row ml-6 mr-6 -mt-40">
             {children}
           </div>
-          <Footer
-            rawData={rawData}
-          />
+          <Footer rawData={rawData} />
         </div>
       </Theme>
     </>
