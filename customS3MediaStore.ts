@@ -107,26 +107,25 @@ export class CustomS3MediaStore implements MediaStore {
     return newFiles
   }
   async delete(media: Media) {
-    throw new Error('Not implemented')
+    // throw new Error('Not implemented');  
 
-    
+    console.log('delete', media)
+    const client = new S3Client({
+      region: this.region,
+       signer: { sign: async (request) => request } // authentication workaround
+    });
 
-    // const client = new S3Client({
-    //   region: this.region,
-    //   signer: { sign: async (request) => request } // authentication workaround
-    // });
-
-    // const params: DeleteObjectCommandInput = {
-    //   Bucket: this.bucket,
-    //   Key: media.id,
-    // }
-    // const command = new DeleteObjectCommand(params)
-    // try {
-    //   const data = await client.send(command)
-    // } catch (e) {
-    //   console.error(e)
-    //   throw e
-    // }
+    const params: DeleteObjectCommandInput = {
+       Bucket: this.bucket,
+       Key: media.id,
+     }
+     const command = new DeleteObjectCommand(params)
+     try {
+       const data = await client.send(command)
+    } catch (e) {
+       console.error(e)
+      throw e
+    }
   }
   // WIP:
   async list(options: MediaListOptions): Promise<MediaList> {
@@ -141,10 +140,8 @@ export class CustomS3MediaStore implements MediaStore {
     const command = new ListObjectsCommand({
       Bucket: 'kingdom-tinacms-store',
       Prefix: directory || undefined,
-      // StartAfter: options.offset,
       MaxKeys: limit,
-      // Marker: this.lastKey
-      
+      Marker: offset as string || undefined,
     })
 
     try {
