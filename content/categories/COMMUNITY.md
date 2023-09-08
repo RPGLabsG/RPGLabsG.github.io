@@ -1,4 +1,5 @@
 ---
-name: COMMUNITY
+name: Project Updates
 ---
+
 
