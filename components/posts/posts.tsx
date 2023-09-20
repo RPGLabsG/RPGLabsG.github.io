@@ -1,13 +1,11 @@
-import React from "react";
+import format from "date-fns/format";
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { BsArrowRight } from "react-icons/bs";
-import { useTheme } from "../layout";
-import format from "date-fns/format";
 
 
 export const Posts = ({ data }) => {
 
+  data = data.sort((a, b) => { return new Date(b.node.date).getTime() - new Date(a.node.date).getTime() });
   return (
     <>
       {data.map((postData) => {
@@ -18,13 +16,15 @@ export const Posts = ({ data }) => {
           formattedDate = format(date, "MMM dd, yyyy");
         }
         return (
-          <div className="px-4 w-full md:w-1/3 pb-8">
+          
+          <div className="px-4 w-full md:w-1/3 pb-8"> 
             
           <Link
             key={post._sys.filename}
             href={`/posts/` + post._sys.filename}
             passHref
           >
+            
             
             <a
               key={post.id}

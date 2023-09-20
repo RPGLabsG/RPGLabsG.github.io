@@ -5,6 +5,8 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 export const FeaturedPosts = ({ data }) => {
 
+  data = data.sort((a, b) => { return new Date(b.node.date).getTime() - new Date(a.node.date).getTime() });
+
   return (
     <>
       {data.map((postData) => {
@@ -53,7 +55,7 @@ export const FeaturedPosts = ({ data }) => {
               <h3
                 className={`text-neutral-700 text-3xl lg:text-[36px] title-font mb-3 transition-all duration-150 ease-out mt-5`}
               >
-                {post._values.title}{" "}
+                {post._values.title}{" "} 
                   </h3>
 
               {/* Caregory */}
